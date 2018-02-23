@@ -1,0 +1,32 @@
+.containerHome{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+  padding: 47px;
+  text-align: center;
+  height: 100vh;
+  box-sizing: border-box;
+  .content{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    p{
+      margin: 0;
+    }
+    img{
+      max-width: 167px;
+      height: 56px;
+      margin-bottom: 64px;
+    }
+    .actions{
+      margin-top: 90px;
+      .btn{
+        height: 54px;
+        color: red !important;
+      }
+    }
+  }
+}
