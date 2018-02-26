@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import TransitionGroup from "react-transition-group/TransitionGroup";
+import * as Animated from "animated/lib/targets/react-dom";
+
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import Product from '../components/Reseta';
@@ -12,7 +15,8 @@ class Products extends Component {
   constructor(props){
     super(props);
     this.state={
-      products:[]
+      products:[],
+      animations: []
     }
   }
 
@@ -29,35 +33,45 @@ class Products extends Component {
 		this.setState(
 			{
 				products: products,
-				// animations: projects.map((_, i) => new Animated.Value(0))
+				animations: products.map((_, i) => new Animated.Value(0))
 			},
-			// () => {
-			// 	Animated.stagger(
-			// 		100,
-			// 		this.state.animations.map(anim =>
-			// 			Animated.spring(anim, { toValue: 1 })
-			// 		)
-			// 	).start();
-			// }
+			() => {
+				Animated.stagger(
+					100,
+					this.state.animations.map(anim =>
+						Animated.spring(anim, { toValue: 1 })
+					)
+				).start();
+			}
 		);
 	}
 
   render() {
     return (
-      <div>
+      <div className="page">
         <div className="listProduct">
-          <ul>
+        <TransitionGroup component="ul">
           {this.state.products.map((p,i) => {
-            console.log(p);
+            const style = {
+							opacity: this.state.animations[i],
+							transform: Animated.template`
+								translate3d(0,${this.state.animations[i].interpolate({
+								inputRange: [0, 1],
+								outputRange: ["12px", "0px"]
+							})},0)
+							`
+						};
             return(
               <li key={p.id}>
-                <Link to={`/product/${p.id}`}>
-                  <Product product={p} />
-                </Link>
+                <Animated.div style={style}>
+                  <Link to={`/product/${p.id}`}>
+                    <Product product={p} />
+                  </Link>
+                </Animated.div>
               </li>
             )
           })}
-          </ul>
+          </TransitionGroup>
         </div>
         <footer style={{backgroundColor: this.props.muiTheme.palette.primary1Color}}>
           <img src={logo} alt="logo" />
@@ -68,4 +82,3 @@ class Products extends Component {
 }
 
 export default  muiThemeable()(Products);
-;

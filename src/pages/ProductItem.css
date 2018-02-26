@@ -1,0 +1,45 @@
+.app-bar {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  align-items: center; }
+  .app-bar img {
+    height: 24px;
+    margin-top: 15px; }
+  .app-bar .badgeShopping {
+    padding: 0px !important; }
+
+.content {
+  flex: 1;
+  margin-top: 50px;
+  padding: 10px; }
+  .content .product-info {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    position: relative;
+    margin: auto;
+    margin-bottom: 100px; }
+    .content .product-info img {
+      max-width: 100%; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  text-align: left;
+  padding: 15px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box; }
+  footer .product-info {
+    width: 80%; }
+    footer .product-info .product-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+
+@media screen and (min-width: 1024px) {
+  .content .product-info {
+    max-width: 300px; } }

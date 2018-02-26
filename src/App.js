@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
+import TransitionGroup from "react-transition-group/TransitionGroup";
+import AnimatedSwitch from "./components/animated_switch";
+
 import { red800, white} from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -9,6 +12,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductItem from './pages/ProductItem';
 import PageShell from './components/PageShell';
+
 
 
 class App extends Component {
@@ -36,11 +40,19 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div>
-          <Route path="/" exact component={PageShell(Home)}></Route>
-          <Route exact path="/products" render={props=>(<Products {...props} products={this.state.products} />)} />
-          <Route path="/product/:id" render={props=>(<ProductItem {...props} products={this.state.products} />)} />
-        </div>
+        <Route 
+          render={({location}) => (
+            <TransitionGroup component="main">
+              <AnimatedSwitch key={location.key} location={location}>
+                <Route path="/" exact component={Home}></Route>
+                <Route exact path="/products" render={props=>(<Products {...props} products={this.state.products} />)} />
+                <Route path="/product/:id" render={props=>(<ProductItem {...props} products={this.state.products} />)} />
+              </AnimatedSwitch>
+            </TransitionGroup>
+          )}
+        >
+
+        </Route>
       </MuiThemeProvider>
     );
   }
