@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import Product from '../components/Reseta';
 
 import logo from '../images/logo_header.png';
+import './ProductList.css';
 import './Footer.css'
 
 class Products extends Component {
@@ -49,7 +51,9 @@ class Products extends Component {
             console.log(p);
             return(
               <li key={p.id}>
-                <Product product={p} />
+                <Link to={`/product/${p.id}`}>
+                  <Product product={p} />
+                </Link>
               </li>
             )
           })}

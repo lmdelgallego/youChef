@@ -17,7 +17,7 @@ class Home extends Component {
           <p><strong>El chef eres tú!</strong><br/>Recibe en tu casa las recetas e ingredientes para cocinar deliciosos platos de forma rápida, fácil y devertida. Bon appetite!</p>
           <div className="actions">
             <RaisedButton label="ORDENA UNA RECETA AHORA" 
-            onClick={()=>{ this.props.history.push('/shop') }}
+            onClick={()=>{ this.props.history.push('/products') }}
             labelColor={this.props.muiTheme.palette.primary1Color} fullWidth={true} style={{marginBottom: '10px'}}/>
             <FlatButton label="COMO FUNCIONA YOUCHEF?" fullWidth={true}/>
           </div>

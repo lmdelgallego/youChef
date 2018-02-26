@@ -7,6 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Home from './pages/Home';
 import Products from './pages/Products';
+import ProductItem from './pages/ProductItem';
 import PageShell from './components/PageShell';
 
 
@@ -37,7 +38,8 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <Route path="/" exact component={PageShell(Home)}></Route>
-          <Route exact path="/shop" render={props=>(<Products {...props} products={this.state.products} />)} />
+          <Route exact path="/products" render={props=>(<Products {...props} products={this.state.products} />)} />
+          <Route path="/product/:id" render={props=>(<ProductItem {...props} products={this.state.products} />)} />
         </div>
       </MuiThemeProvider>
     );
