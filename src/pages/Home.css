@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   align-content: center;
   padding: 47px;
   text-align: center;
@@ -12,15 +12,17 @@
     display: flex;
     flex-direction: column;
     color: white;
-    align-items: center; }
+    align-items: center;
+    justify-content: space-between; }
     .containerHome .content p {
       margin: 0; }
     .containerHome .content img {
       max-width: 167px;
-      height: 56px;
-      margin-bottom: 64px; }
-    .containerHome .content .actions {
-      margin-top: 90px; }
-      .containerHome .content .actions .btn {
-        height: 54px;
-        color: red !important; }
+      height: 56px; }
+    .containerHome .content .actions .btn {
+      height: 54px;
+      color: red !important; }
+
+@media screen and (min-width: 1024px) {
+  .containerHome .content {
+    width: 400px; } }
