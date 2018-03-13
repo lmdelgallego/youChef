@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route } from 'react-router';
 
 import TransitionGroup from "react-transition-group/TransitionGroup";
 import AnimatedSwitch from "./components/animated_switch";
@@ -13,6 +13,9 @@ import Products from './pages/Products';
 import ProductItem from './pages/ProductItem';
 import PageShell from './components/PageShell';
 
+
+import { Provider } from 'react-redux';
+import store, { history } from './store';
 
 
 class App extends Component {
