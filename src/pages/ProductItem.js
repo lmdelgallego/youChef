@@ -50,7 +50,7 @@ class ProductItem extends Component {
     
     return (
       <div className="page">
-        <Header {...this.props} />
+        <Header back={true} {...this.props} />
         <div className="content">
           <div className="product-info">
             <img src={product.url} alt={product.title}/>

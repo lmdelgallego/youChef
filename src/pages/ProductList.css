@@ -1,5 +1,5 @@
 .listProduct {
-  padding: 10px 10px 54px 10px; }
+  padding: 60px 10px 10px 10px; }
   .listProduct ul {
     display: flex;
     flex-flow: row wrap;
@@ -12,8 +12,6 @@
       min-height: 230px;
       margin-bottom: 10px;
       margin-right: 10px; }
-      .listProduct ul li div {
-        width: 99%; }
       .listProduct ul li a {
         text-decoration: none;
         width: 100%; }
