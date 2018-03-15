@@ -5,6 +5,10 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import AddShopping from 'material-ui/svg-icons/action/add-shopping-cart';
 import IconButton from 'material-ui/IconButton';
 
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as actionCreators from '../actions/actionsCreators';
+
 import Header from '../components/Header.js';
 import './ProductItem.css';
 
@@ -73,4 +77,16 @@ class ProductItem extends Component {
     );
   }
 }
-export default  muiThemeable()(ProductItem);
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+    order: state.order
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(muiThemeable()(ProductItem));

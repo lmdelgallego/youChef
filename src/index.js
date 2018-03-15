@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import Home from './pages/Home';
+
 import Products from './pages/Products';
 import ProductItem from './pages/ProductItem';
 import registerServiceWorker from './registerServiceWorker';
@@ -31,9 +33,9 @@ const router = (
     <MuiThemeProvider muiTheme={muiTheme}>
       <Router history={history}>
         <div>
-          <Route exact path="/" component={App} />
-          <Route exact path="/products" component={Products}/>
-          <Route exact path="/product/:id" component={ProductItem}/>
+          <Route exact path="/" component={Home} />
+          <Route path="/products" component={Products} />
+          <Route path="/product/:id" component={ProductItem}/>
         </div>
       </Router>
     </MuiThemeProvider>

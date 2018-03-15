@@ -1,18 +1,19 @@
-import { createStore } from 'redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { createStore, applyMiddleware } from 'redux';
 import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 //import reducers
 import rootReducer from './reducers/index';
 
-const browserHistory = createHistory();
+export const history = createHistory();
+const middleware = routerMiddleware(history);
+
 //import 
 const defaultState = {
 	order: {},
 	products: {}
 }
 
-const store = new createStore(rootReducer, defaultState);
-export const history = syncHistoryWithStore(browserHistory, store); 
+const store = createStore(rootReducer, applyMiddleware(middleware));
 
 export default store; 

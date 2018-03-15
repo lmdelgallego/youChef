@@ -5,6 +5,10 @@ import * as Animated from "animated/lib/targets/react-dom";
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as actionCreators from '../actions/actionsCreators';
+
 import Header from '../components/Header';
 import Product from '../components/Reseta';
 
@@ -81,4 +85,15 @@ class Products extends Component {
   }
 }
 
-export default  muiThemeable()(Products);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+    order: state.order
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(muiThemeable()(Products));
