@@ -33,7 +33,7 @@ class Products extends Component {
   render() {
     return (
       <div className="page">
-        <Header {...this.props} />
+        <Header back={false} {...this.props} />
         <div className="listProduct">
           <ul>
             {this.props.products.map((product) => {
