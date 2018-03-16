@@ -1,6 +1,21 @@
 function order(state = [], action){
-	console.log(action);
-	return state;
+
+	switch (action.type) {
+		case 'ADD_ITEM':
+			return [
+				...state
+			];
+			break;
+		
+		case 'REMOVE_ITEM':
+			return state;
+			break;
+
+		default:
+			return state;
+			break;
+	}
+
 }
 
 export default order;

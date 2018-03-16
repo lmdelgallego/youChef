@@ -5,6 +5,8 @@ import * as Animated from "animated/lib/targets/react-dom";
 
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
+import {loadState} from '../localStorage';
+
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actionCreators from '../actions/actionsCreators';
@@ -12,29 +14,19 @@ import * as actionCreators from '../actions/actionsCreators';
 import Header from '../components/Header';
 import Product from '../components/Reseta';
 
+
 import logo from '../images/logo_header.png';
 import './ProductList.css';
+
+
 
 class Products extends Component {
   constructor(props){
     super(props);
-    this.state={
-      products:[],
-      animations: []
-    }
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/photos")
-			.then(response => {
-      return response.json();
-    })
-    .then(json => {
-      console.log(json)
-      this.setState({
-        products: json.slice(0, 7)
-      });
-    });
+    this.props.dispatch(this.props.fetchProduct())
   }
 
   // componentDidMount(){
@@ -64,16 +56,17 @@ class Products extends Component {
 	// }
 
   render() {
+    console.log(this.props)
     return (
       <div className="page">
         <Header {...this.props} />
         <div className="listProduct">
           <ul>
-            {this.state.products.map((product) => {
+            {this.props.products.map((product) => {
               return(
                 <li key={product.id}>
                   <Link to={`/product/${product.id}`}>
-                    <Product product={product} />
+                    <Product product={product}/>
                   </Link>
                 </li>
               )
@@ -90,10 +83,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    products: state.products,
-    order: state.order
-  }
+  const {products} = state;
+  return { products }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(muiThemeable()(Products));

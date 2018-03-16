@@ -12,6 +12,18 @@ import * as actionCreators from '../actions/actionsCreators';
 import Header from '../components/Header.js';
 import './ProductItem.css';
 
+
+// const ProductItem = (props) => {
+  
+//   const productId = props.match.params.id;
+//   const i = props.products.findIndex((product) => product.id === productId );
+//   const product = props.product[i]
+//   return(
+//     <p>SIngle prodic</p>
+//   )
+  
+// }
+
 class ProductItem extends Component {
   constructor(props){
     super(props);
@@ -24,6 +36,8 @@ class ProductItem extends Component {
   componentDidMount(){
     if(this.props.products.length){
       this._renderProject(this.props.products);
+    }else{
+      console.error('12121212')
     }
   }
 

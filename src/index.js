@@ -17,6 +17,7 @@ import './index.css';
 import { Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store,{history} from './store';
+import {loadSatate, saveState } from './localStorage';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -27,6 +28,10 @@ const muiTheme = getMuiTheme({
     height: 50,
   }
 });
+
+store.subscribe(() => {
+  saveState(store.getState());
+})
 
 const router = (
   <Provider store={store}>
