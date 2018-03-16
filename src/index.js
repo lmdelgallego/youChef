@@ -36,13 +36,15 @@ store.subscribe(() => {
 const router = (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={muiTheme}>
-      <Router history={history}>
-        <div>
-          <Route exact path="/" component={Home} />
-          <Route path="/products" component={Products} />
-          <Route path="/product/:id" component={ProductItem}/>
-        </div>
-      </Router>
+      
+        <Router history={history}>
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route path="/products" component={Products} />
+            <Route path="/product/:id" component={ProductItem}/>
+          </div>
+        </Router>
+      
     </MuiThemeProvider>
   </Provider>
 )

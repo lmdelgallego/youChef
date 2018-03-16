@@ -1,3 +1,5 @@
+import {loadState, saveState} from '../localStorage';
+
 //Add PRODUCT TO ORDER
 export function addProductoOrder(index) {
 	return {
@@ -22,29 +24,35 @@ export function requestProducts(products){
 	}
 }
 
-export function receiveProducts(jsonProducts){
+export function receiveProducts(products){
 	return {
 		type: 'RECEIVE_PRODUCTS',
-		product: jsonProducts,
+		products,
 		receivedAt: Date.now()
 	}
 }
 
+const shouldFetchProducts = (state, actions) => {
+	console.log(loadState());
+	if(!loadState()){
+		return true;
+	}
+	return false;
+}
 
-
-export function fetchProduct(products){
+function fetchProduct(products){
 	return dispatch =>{
 		dispatch(requestProducts(products));
 		return fetch("https://jsonplaceholder.typicode.com/photos")
 		.then(response => response.json())
-		.then(json => {
-			// console.log(json)
-			// this.setState({
-			//   products: json.slice(0, 20)
-			// });
-			
-			this.props.setProducts(json.slice(0,100))
+		.then(json => dispatch( receiveProducts( json.slice(0,100) ) ) );
+	}
+}
 
-		});
+export const fetchProductItNeeded = (products) => (dispatch, getState) =>{
+	if(shouldFetchProducts(getState(), products)){
+		return dispatch(fetchProduct(products));
+	}else{
+		return dispatch(fetchProduct(loadState().products));
 	}
 }

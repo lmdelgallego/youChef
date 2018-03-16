@@ -1,7 +1,6 @@
 function products(state = [],action){
-	console.log(action)
 	switch (action.type) {
-		case 'SET_PRODUCTS':
+		case 'RECEIVE_PRODUCTS':
 			const { products } = action;
 			return products;
 			break;

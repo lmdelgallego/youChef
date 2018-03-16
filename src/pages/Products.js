@@ -26,37 +26,11 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(this.props.fetchProduct())
+    const {products} = this.props;
+    this.props.fetchProductItNeeded(products);
   }
-
-  // componentDidMount(){
-  //   this._renderProducts(this.props.products);
-  // }
-  // componentWillReceiveProps(nextProps) {
-	// 	if (!this.props.products.length && nextProps.products.length) {
-	// 		this._renderProducts(nextProps.products);
-	// 	}
-	// }
-
-  // _renderProducts(products) {
-	// 	this.setState(
-	// 		{
-	// 			products: products,
-	// 			animations: products.map((_, i) => new Animated.Value(0))
-	// 		},
-	// 		() => {
-	// 			Animated.stagger(
-	// 				100,
-	// 				this.state.animations.map(anim =>
-	// 					Animated.spring(anim, { toValue: 1 })
-	// 				)
-	// 			).start();
-	// 		}
-	// 	);
-	// }
-
+  
   render() {
-    console.log(this.props)
     return (
       <div className="page">
         <Header {...this.props} />
