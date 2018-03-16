@@ -32,7 +32,8 @@ footer {
   color: white;
   display: flex;
   justify-content: space-around;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  width: 100%; }
   footer .product-info {
     width: 80%; }
     footer .product-info .product-title {

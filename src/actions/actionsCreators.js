@@ -53,6 +53,6 @@ export const fetchProductItNeeded = (products) => (dispatch, getState) =>{
 	if(shouldFetchProducts(getState(), products)){
 		return dispatch(fetchProduct(products));
 	}else{
-		return dispatch(fetchProduct(loadState().products));
+		return dispatch(receiveProducts(loadState().products));
 	}
 }
