@@ -8,8 +8,9 @@ import {loadState} from './localStorage';
 //import reducers
 import rootReducer from './reducers/index';
 
+console.log(loadState())
 const initialState = {
-  cart:loadState().cart,
+  cart: (typeof loadState() !== 'undefined') ? loadState().cart : {},
   products:[]
 }
 
@@ -22,4 +23,4 @@ middleware.push(routerMiddleware(history));
 
 const store = createStore(rootReducer,initialState,compose(applyMiddleware(...middleware)) ) ;
 
-export default store; 
+export default store;

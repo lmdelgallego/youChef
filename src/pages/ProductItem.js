@@ -59,7 +59,7 @@ class ProductItem extends Component {
   render() {
     const {product} = this.state;
     
-    product.price = '12.500';
+    product.price = 12500;
     
     return (
       <div className="page">

@@ -1,4 +1,5 @@
 import {loadState, saveState} from '../localStorage';
+import _ from 'lodash';
 
 //Add PRODUCT TO CART
 export function addToCart(productId) {
@@ -23,7 +24,7 @@ export function receiveCart(cart) {
 // }
 
 //Remove PRODUCT TO CART
-export function removeProductOrder(productId, index) {
+export function removeProductCart(productId, index) {
 	return {
 		type: 'REMOVE_ITEM',
 		index,

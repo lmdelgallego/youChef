@@ -5,7 +5,7 @@ class Product extends Component {
   render() {
     
     const product = this.props.product;
-    product.price = '12.500';
+    product.price = 12500;
     return (
       <div className="product" style={{ backgroundImage: `url(${product.url})` }}>
         <div className="product-info">
