@@ -2,12 +2,11 @@ function products(state = [],action){
 	switch (action.type) {
 		case 'RECEIVE_PRODUCTS':
 			const { products } = action;
-			return products;
-			break;
+			return products
 	
 		default:
 			return state;
-			break;
+
 	}
 }
 

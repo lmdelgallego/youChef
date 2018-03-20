@@ -8,6 +8,10 @@ import {loadState} from './localStorage';
 //import reducers
 import rootReducer from './reducers/index';
 
+const initialState = {
+  cart:loadState().cart,
+  products:[]
+}
 
 const middleware = [ thunk ];
 middleware.push(logger);
@@ -16,6 +20,6 @@ export const history = createHistory();
 middleware.push(routerMiddleware(history));
 
 
-const store = createStore(rootReducer,compose(applyMiddleware(...middleware)) ) ;
+const store = createStore(rootReducer,initialState,compose(applyMiddleware(...middleware)) ) ;
 
 export default store; 

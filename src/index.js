@@ -6,6 +6,7 @@ import Home from './pages/Home';
 
 import Products from './pages/Products';
 import ProductItem from './pages/ProductItem';
+import Cart from './pages/Cart';
 import registerServiceWorker from './registerServiceWorker';
 
 import { red800, white} from 'material-ui/styles/colors';
@@ -17,7 +18,7 @@ import './index.css';
 import { Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store,{history} from './store';
-import {loadSatate, saveState } from './localStorage';
+import { saveState } from './localStorage';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -42,6 +43,7 @@ const router = (
             <Route exact path="/" component={Home} />
             <Route path="/products" component={Products} />
             <Route path="/product/:id" component={ProductItem}/>
+            <Route path="/cart" component={Cart}/>
           </div>
         </Router>
       

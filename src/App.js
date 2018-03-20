@@ -9,9 +9,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
+  const {products, cart, inventory} = state;
   return {
-    products: state.products,
-    order: state.order
+    products,
+    cart,
+    inventory
   }
 }
 

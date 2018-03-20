@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 
-import order from './order';
+import cart from './cart';
 import products from './products';
 
-const rootReducer = combineReducers({order, products, routing: routerReducer});
+const rootReducer = combineReducers({cart, products, routing: routerReducer});
 
 export default rootReducer;

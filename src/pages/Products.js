@@ -57,8 +57,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  const {products} = state;
-  return { products }
+  return {
+    products: state.products,
+    cart: state.cart
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(muiThemeable()(Products));

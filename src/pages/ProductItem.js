@@ -23,10 +23,12 @@ class ProductItem extends Component {
 
   componentDidMount(){
     if(this.props.products.length){
+      this.props.loadCart();
       this._renderProject(this.props.products);
     }else{
       const {products} = this.props;
       this.props.fetchProductItNeeded(products);
+      this.props.loadCart();
     }
   }
 
@@ -48,7 +50,11 @@ class ProductItem extends Component {
 				375
 			);
 		}
-	}
+  }
+  
+  _handleAddToCart(){
+    console.log("ADD_TO_CART",this.props)
+  }
 
   render() {
     const {product} = this.state;
@@ -74,7 +80,7 @@ class ProductItem extends Component {
               ${product.price} <em>por persona</em>
             </div>
           </div>
-          <IconButton><AddShopping/></IconButton>
+          <IconButton onClick={this.props.addToCart.bind(null,this.props.match.params.id)}><AddShopping/></IconButton>
         </footer>    
       </div>
     );
@@ -88,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     products: state.products,
-    order: state.order
+    cart: state.cart
   }
 }
 

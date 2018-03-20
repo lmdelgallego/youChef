@@ -15,7 +15,12 @@ class Header extends Component {
 	render() {
 		console.log(this.props)
 		const btnBack = (this.props.back) ? <IconButton><ArrowBack/></IconButton> : null;
-
+		let totalQuantity = 0;
+		Object.keys(this.props.cart.quantityById).map((key,index)=>{
+			console.log(key, index);
+			totalQuantity += this.props.cart.quantityById[key];
+		})
+		
 		return (
 			<AppBar
 	          className="app-bar"
@@ -24,7 +29,8 @@ class Header extends Component {
 	          iconElementLeft={btnBack}
 						onLeftIconButtonClick={ (this.props.back) ? ()=>{ this.props.history.goBack(); } : null }
 						showMenuIconButton={this.props.back}
-	          iconElementRight={<IconButton style={{ padding: 0 }}><Badge className="badgeShopping" badgeContent={4} badgeStyle={{top: -5, right: -5, width:18, height:18, color: this.props.muiTheme.palette.primary1Color, padding:0}}><ShoppingCard/></Badge></IconButton>}
+						iconElementRight={<IconButton style={{ padding: 0 }}><Badge className="badgeShopping" badgeContent={totalQuantity} badgeStyle={{top: -5, right: -5, width:18, height:18, color: this.props.muiTheme.palette.primary1Color, padding:0}}><ShoppingCard/></Badge></IconButton>}
+						onRightIconButtonClick={ ()=>{ this.props.history.push('/cart') }}
 	        />
 		);
 	}

@@ -1,14 +1,28 @@
 import {loadState, saveState} from '../localStorage';
 
-//Add PRODUCT TO ORDER
-export function addProductoOrder(index) {
+//Add PRODUCT TO CART
+export function addToCart(productId) {
 	return {
-		type: 'ADD_ITEM',
-		index
+		type: 'ADD_TO_CART',
+		productId
 	}
 }
 
-//Remove PRODUCT TO ORDER
+export function receiveCart(cart) {
+	return {
+		type: 'RECEIVE_CART',
+		cart
+	}
+}
+
+// export const addToCart = productId => (dispatch, getState) => {
+// 	console.log(getState(),productId);
+// 	if(getState().cart.byId[productId].inventory > 0){
+// 		dispatch(addProducToCart(productId));
+// 	}
+// }
+
+//Remove PRODUCT TO CART
 export function removeProductOrder(productId, index) {
 	return {
 		type: 'REMOVE_ITEM',
@@ -27,8 +41,7 @@ export function requestProducts(products){
 export function receiveProducts(products){
 	return {
 		type: 'RECEIVE_PRODUCTS',
-		products,
-		receivedAt: Date.now()
+		products
 	}
 }
 
@@ -55,4 +68,9 @@ export const fetchProductItNeeded = (products) => (dispatch, getState) =>{
 	}else{
 		return dispatch(receiveProducts(loadState().products));
 	}
+}
+
+export const loadCart = () => (dispatch, getState) =>{
+	console.log(loadState())
+	return dispatch(receiveCart(loadState().cart));
 }

@@ -8,9 +8,7 @@ import './Home.css'
 import bgImage from "../images/Background.png";
 
 class Home extends Component {
-  constructor(props){
-    super(props);
-  }
+
   render() {
     return (
       <div className="containerHome" style={style.App}>
