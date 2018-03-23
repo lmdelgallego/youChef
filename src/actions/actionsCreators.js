@@ -24,11 +24,18 @@ export function receiveCart(cart) {
 // }
 
 //Remove PRODUCT TO CART
-export function removeProductCart(productId, index) {
+export function removeProductCart(productId) {
 	return {
 		type: 'REMOVE_ITEM',
-		index,
 		productId
+	}
+}
+
+export function deleteProductCart(productId, index){
+	return {
+		type: 'DELETE_ITEM',
+		productId,
+		index
 	}
 }
 

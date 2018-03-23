@@ -12,6 +12,12 @@ import * as fromReducers from '../reducers';
 import Header from '../components/Header';
 
 class Cart extends Component {
+
+  constructor(props){
+    super(props);
+    this._handlerOnClick = this._handlerOnClick.bind(this);
+  }
+
   componentDidMount(){
     if(this.props.products.length){
       this.props.loadCart();
@@ -20,6 +26,17 @@ class Cart extends Component {
       this.props.fetchProductItNeeded(products);
       this.props.loadCart();
     }
+  }
+
+  _handlerOnClick(productId, key) {
+    this.props.removeProductCart(productId, key);
+    //TODO: preguntad por el estado del la cantidad de productos - productId - en el state.
+    // ejecutar this.
+    console.log(this.props.cart.quantityById[productId] <= 1);
+    if(this.props.cart.quantityById[productId] <= 1){
+      this.props.deleteProductCart(productId,key);
+    }
+
   }
   render() {
     console.log(this.props.getCart);
@@ -34,7 +51,7 @@ class Cart extends Component {
               return(
                 <ListItem key={key}
                 primaryText={product.title}
-                rightIconButton={<IconButton onClick={ this.props.removeProductCart.bind(null,product.id, key) }><Delete  color='red' /></IconButton>}
+                rightIconButton={<IconButton onClick={ () => this._handlerOnClick(product.id, key) }><Delete  color='red' /></IconButton>}
                 leftAvatar={<Avatar src={product.url}/>}
                 secondaryText={`${product.quantity} - $${parseInt(product.price)*product.quantity}`}
                 secondaryTextLines={2}

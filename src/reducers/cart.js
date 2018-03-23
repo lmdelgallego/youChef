@@ -1,4 +1,5 @@
 import defaultState from './defaultState';
+import _ from 'lodash';
 
 const addedIds = (state=defaultState.cart.addedIds, action) =>{
 	switch (action.type) {
@@ -7,19 +8,35 @@ const addedIds = (state=defaultState.cart.addedIds, action) =>{
 				return state;
 			}
 			return [ ...state, action.productId ]
-	
+		case 'DELETE_ITEM':
+			const {index} = action;
+			return [
+				...state.slice(0, index),
+        ...state.slice(index + 1)
+			];
 		default:
 			return state
 	}
 }
 
 const quantityById = (state = defaultState.cart.quantityById, action) =>{
-	switch (action.type) {
+	const { productId, type } = action
+	switch (type) {
 		case 'ADD_TO_CART':
-			const { productId } = action
 			return { ...state,
 				[productId]: (state[productId] || 0 ) + 1
 			}
+			break;
+		
+		case 'REMOVE_ITEM':
+			return {...state,
+				[productId]: state[productId] - 1
+			}
+			break;
+
+		case 'DELETE_ITEM':
+			delete state[productId]
+			return state;
 	
 		default:
 			return state
