@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppBar, List, ListItem, Avatar , IconButton} from 'material-ui';
+import { AppBar, List, ListItem, Avatar , IconButton, RaisedButton} from 'material-ui';
 import Delete from 'material-ui/svg-icons/action/delete';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -15,7 +15,7 @@ class Cart extends Component {
 
   constructor(props){
     super(props);
-    this._handlerOnClick = this._handlerOnClick.bind(this);
+    this._deleteProduct = this._deleteProduct.bind(this);
   }
 
   componentDidMount(){
@@ -28,7 +28,7 @@ class Cart extends Component {
     }
   }
 
-  _handlerOnClick(productId, key) {
+  _deleteProduct(productId, key) {
     this.props.removeProductCart(productId, key);
     //TODO: preguntad por el estado del la cantidad de productos - productId - en el state.
     // ejecutar this.
@@ -51,7 +51,7 @@ class Cart extends Component {
               return(
                 <ListItem key={key}
                 primaryText={product.title}
-                rightIconButton={<IconButton onClick={ () => this._handlerOnClick(product.id, key) }><Delete  color='red' /></IconButton>}
+                rightIconButton={<IconButton onClick={ () => this._deleteProduct(product.id, key) }><Delete  color='red' /></IconButton>}
                 leftAvatar={<Avatar src={product.url}/>}
                 secondaryText={`${product.quantity} - $${parseInt(product.price)*product.quantity}`}
                 secondaryTextLines={2}
@@ -61,6 +61,9 @@ class Cart extends Component {
             })}
           </List>
         </div>
+        <footer>
+          <RaisedButton label="Siguiente" primary={true} fullWidth={true} onClick={() => this.props.history.push('/checkout') } />
+        </footer>
       </div>
     );
   }

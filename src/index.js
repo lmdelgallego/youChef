@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductItem from './pages/ProductItem';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 import registerServiceWorker from './registerServiceWorker';
 
 import { red800, white} from 'material-ui/styles/colors';
@@ -44,6 +45,7 @@ const router = (
             <Route path="/products" component={Products} />
             <Route path="/product/:id" component={ProductItem}/>
             <Route path="/cart" component={Cart}/>
+            <Route path="/checkout" component={Checkout} />
           </div>
         </Router>
       
