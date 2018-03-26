@@ -1,6 +1,10 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    ".read": true,
+    ".write": "!data.exists()",
+    "$room" :{
+      ".write": "newData.child('owner').val() === auth.uid",
+      ".read": true
+    }
   }
 }
